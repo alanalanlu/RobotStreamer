@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
-    "start": "npx peerjx --port 3001"
+    "devStart": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
