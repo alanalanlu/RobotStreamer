@@ -29,7 +29,7 @@ io.on('connection', socket => {
     
     
     socket.on('disconnect', () => {
-      memCount+=1;
+      memCount-=1;
       socket.to(roomId).broadcast.emit('user-disconnected', userId)
     })
   })
