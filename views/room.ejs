@@ -11,21 +11,52 @@
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="script.js" defer></script>
   <title>Document</title>
+  <link href='http://fonts.googleapis.com/css?family=Syncopate' rel='stylesheet' type='text/css'>
   <style>
     #video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 500px);
-      grid-auto-rows: 500px;
+      /* display: grid; */
+      /* grid-template-columns: repeat(auto-fill, 350px); */
+      /* width: -50%; */
+      display: flex;
+      height: 50%;
+      margin-left: 8%;
+      margin-right: 10%;
+      gap:30px;
+      /* margin-top: 10%; */
+
     }
-    
+    body{
+      background-color: lightgray;
+    }
     video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 50%;
+      transform: scaleX(-1);
+      border-radius: 20px;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+     
+    #timer {
+      text-align: center;      
+      margin-top: 20px;
+      font-size: 30px;
+      font-family: 'Geneva';
+    }
+    #title {
+      padding-top: 20px;
+      font-size: 40px;
+      font-family: 'Geneva';
+      text-align: center;
+      font-size: 50;
     }
   </style>
 </head>
 <body>
+  <p id="title">Control the Robot Hand with your hands!</p>
   <div id="video-grid"></div>
+  <p id = "timer">Time Left</p>
+  <div id="donation">
+    
+  </div>
 </body>
 </html>

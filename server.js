@@ -1,10 +1,14 @@
+const { Console } = require('console')
 const express = require('express')
+const Router = express.Router
+
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
 
-var memCount = 0; 
+var queue = [];
+var roomCount = 0;
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -17,20 +21,50 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
-
-
+// function logic to be called
+console.log('joinroom')
 io.on('connection', socket => {
+  
   socket.on('join-room', (roomId, userId) => {
-    if (memCount<2){
+    function queueSystem(){
+      if (queue.length>0){
+          var next=queue[0]
+          socket.to(100).broadcast.emit('user-connected', next)
+          queue.shift()
+          io.emit('shortenQueue',{position: 10})
+          // socket.emit('startCountdown',{position: 10})
+          setTimeout(function(){
+            socket.to(100).broadcast.emit('user-disconnected', next)
+            queueSystem()
+          }, 10000)}
+    }
+    roomId=100
+    roomCount+=1;
+    console.log('++++=')
+    if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
       socket.join(roomId)
-      socket.to(roomId).broadcast.emit('user-connected', userId)
-      memCount+=1;
+      socket.to(100).broadcast.emit('user-connected', userId)
+      if (io.sockets.adapter.rooms[roomId].length==2){
+        // socket.emit('startCountdown',{position: 10})
+        setTimeout(function(){
+          socket.leave(100)
+          socket.to(roomId).broadcast.emit('user-disconnected', userId)
+          queueSystem()
+        }, 10000)}
+      
+    }
+    else{
+      queue.push(userId); 
+
+      socket.emit('queuePostition', {position: queue.length})
+
+      console.log(queue)
     }
     
-    
     socket.on('disconnect', () => {
-      memCount-=1;
+      console.log('disconnected')
       socket.to(roomId).broadcast.emit('user-disconnected', userId)
+      queue = queue.filter(function(e) { return e !== userId })
     })
   })
 })
