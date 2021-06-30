@@ -25,7 +25,9 @@ function countdown(){
       }, 1000)}
       else{
         document.getElementById("timer").innerHTML = "Your session has ended. Thanks for trying my robot!"
-        vid.remove()
+        if (!vid){
+          vid.remove()
+        }
       }
 }
 
