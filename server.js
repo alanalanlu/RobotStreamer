@@ -36,11 +36,10 @@ io.on('connection', socket => {
           setTimeout(function(){
             socket.to(100).broadcast.emit('user-disconnected', next)
             queueSystem()
-          }, 10000)}
+          }, 11000)}
     }
     roomId=100
     roomCount+=1;
-    console.log('++++=')
     if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
       socket.join(roomId)
       socket.to(100).broadcast.emit('user-connected', userId)
@@ -50,7 +49,7 @@ io.on('connection', socket => {
           socket.leave(100)
           socket.to(roomId).broadcast.emit('user-disconnected', userId)
           queueSystem()
-        }, 10000)}
+        }, 11000)}
       
     }
     else{
