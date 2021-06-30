@@ -32,7 +32,6 @@ io.on('connection', socket => {
           socket.to(100).broadcast.emit('user-connected', next)
           queue.shift()
           io.emit('shortenQueue',{position: 10})
-          // socket.emit('startCountdown',{position: 10})
           setTimeout(function(){
             socket.to(100).broadcast.emit('user-disconnected', next)
             queueSystem()
@@ -44,7 +43,6 @@ io.on('connection', socket => {
       socket.join(roomId)
       socket.to(100).broadcast.emit('user-connected', userId)
       if (io.sockets.adapter.rooms[roomId].length==2){
-        // socket.emit('startCountdown',{position: 10})
         setTimeout(function(){
           socket.leave(100)
           socket.to(roomId).broadcast.emit('user-disconnected', userId)
