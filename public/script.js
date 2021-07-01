@@ -8,14 +8,16 @@ const myPeer = new Peer(undefined, {
 })
 // alert("This website allows you to control a robot hand with your hands through your camera and would need to access camera. Is that ok?")
 const myVideo = document.createElement('video')
-myVideo.setAttribute("playsinline",null)
+// myVideo.setAttribute("playsinline",null)
 myVideo.muted = true
 const peers = {}
 var vid;
 var timer = 10;
 var queuePosition;
 // countdown();
-
+function refresh(){
+  window.location.reload(false); 
+}
 function countdown(){
   if (timer>=0){
       setTimeout(function(){
@@ -25,7 +27,12 @@ function countdown(){
       }, 1000)}
       else{
         document.getElementById("timer").innerHTML = "Your session has ended. Thanks for trying my robot!"
-        if (!vid){
+        const button = document.createElement('button')
+        button.innerHTML="Rejoin Queue";
+        button.setAttribute("id","rejoin")
+        button.setAttribute("onclick","refresh()")
+        document.body.appendChild(button);
+        if (vid){
           vid.remove()
         }
       }
@@ -53,7 +60,6 @@ navigator.mediaDevices.getUserMedia({
 
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
-
 })
 
 socket.on('queuePostition', data => {
@@ -85,7 +91,7 @@ function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
   const video = document.createElement('video')
   video.setAttribute("playsinline",null)
-
+  console.log('connected')
   beep();
   call.on('stream', userVideoStream => {
     addVideoStream(video, userVideoStream)
@@ -100,7 +106,7 @@ function connectToNewUser(userId, stream) {
 
 function addVideoStream(video, stream) {
   video.srcObject = stream
-  // console.log(video.srcObject)
+  console.log("addvid",video.srcObject)
   // video.srcObject.getAudioTracks()[0].enabled=false;
   video.addEventListener('loadedmetadata', () => {
     video.play()

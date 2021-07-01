@@ -7,7 +7,7 @@
   <script>
     const ROOM_ID = "<%= roomId %>"
   </script>
-  <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+  <script defer src="http://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="script.js" defer></script>
   <title>Document</title>
@@ -54,9 +54,18 @@
     }
 
     #live{
-
       display:block;
       margin:auto;
+    }
+
+    #rejoin{
+      display: flex;
+      margin: 0 auto;
+      background-color: lightskyblue;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 10px;
+      font-family: "Geneva";
     }
 
   </style>
@@ -65,9 +74,9 @@
   <p id="title">Control the Robot Hand with your hands!</p>
   <div id="video-grid"></div>
   <p id = "timer">Time Left</p>
+  <!-- <button type="button">Click Me!</button> -->
   <!-- <div id="donation"> -->
   <!-- <iframe width="70%" id="live" height="534" src="https://www.youtube.com/embed/Qps2vPSx98o?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-    
   </div>
 </body>
 </html>
