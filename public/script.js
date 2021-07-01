@@ -8,7 +8,7 @@ const myPeer = new Peer(undefined, {
 })
 // alert("This website allows you to control a robot hand with your hands through your camera and would need to access camera. Is that ok?")
 const myVideo = document.createElement('video')
-// myVideo.setAttribute("playsinline",null)
+myVideo.setAttribute("playsinline",null)
 myVideo.muted = true
 const peers = {}
 var vid;
