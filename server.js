@@ -52,7 +52,7 @@ io.on('connection', socket => {
     //   socket.emit('queuePostition', {position: queue.length})
 
     //   console.log(queue)
-    socket.to(100).broadcast.emit('user-connected', next)
+    socket.to(100).broadcast.emit('user-connected', userId)
     
     socket.on('disconnect', () => {
       console.log('disconnected')
