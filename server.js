@@ -23,7 +23,6 @@ app.get('/:room', (req, res) => {
 // function logic to be called
 // console.log('joinroom')
 io.on('connection', socket => {
-  
   socket.on('join-room', (roomId, userId) => {
     function queueSystem(){
       if (queue.length>0){

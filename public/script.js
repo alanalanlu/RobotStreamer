@@ -86,7 +86,7 @@ socket.on('shortenQueue',garb=>{
 
 myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
-  console.log('joinedroom')
+  console.log('joinedroom',id)
 })
 
 function beep() {
