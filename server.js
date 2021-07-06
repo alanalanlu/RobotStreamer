@@ -8,7 +8,6 @@ const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
 
 var queue = [];
-var roomCount = 0;
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -22,7 +21,7 @@ app.get('/:room', (req, res) => {
 })
 
 // function logic to be called
-console.log('joinroom')
+// console.log('joinroom')
 io.on('connection', socket => {
   
   socket.on('join-room', (roomId, userId) => {
@@ -38,7 +37,6 @@ io.on('connection', socket => {
           }, 11000)}
     }
     roomId=100
-    roomCount+=1;
     if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
       socket.join(roomId)
       socket.to(100).broadcast.emit('user-connected', userId)
