@@ -24,36 +24,35 @@ app.get('/:room', (req, res) => {
 // console.log('joinroom')
 io.on('connection', socket => {
   socket.on('join-room', (roomId, userId) => {
-    function queueSystem(){
-      if (queue.length>0){
-          var next=queue[0]
-          socket.to(100).broadcast.emit('user-connected', next)
-          queue.shift()
-          io.emit('shortenQueue',{position: 10})
-          setTimeout(function(){
-            socket.to(100).broadcast.emit('user-disconnected', next)
-            queueSystem()
-          }, 11000)}
-    }
-    roomId=100
-    if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
-      socket.join(roomId)
-      socket.to(100).broadcast.emit('user-connected', userId)
-      if (io.sockets.adapter.rooms[roomId].length==2){
-        setTimeout(function(){
-          socket.leave(100)
-          socket.to(roomId).broadcast.emit('user-disconnected', userId)
-          queueSystem()
-        }, 11000)}
-      
-    }
-    else{
-      queue.push(userId); 
+    // function queueSystem(){
+    //   if (queue.length>0){
+    //       var next=queue[0]
+    //       socket.to(100).broadcast.emit('user-connected', next)
+    //       queue.shift()
+    //       io.emit('shortenQueue',{position: 10})
+    //       setTimeout(function(){
+    //         socket.to(100).broadcast.emit('user-disconnected', next)
+    //         queueSystem()
+    //       }, 11000)}
+    // }
+    // roomId=100
+    // if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
+    //   socket.join(roomId)
+    //   socket.to(100).broadcast.emit('user-connected', userId)
+    //   if (io.sockets.adapter.rooms[roomId].length==2){
+    //     setTimeout(function(){
+    //       socket.leave(100)
+    //       socket.to(roomId).broadcast.emit('user-disconnected', userId)
+    //       queueSystem()
+    //     }, 11000)}
+    // }
+    // else{
+    //   queue.push(userId); 
 
-      socket.emit('queuePostition', {position: queue.length})
+    //   socket.emit('queuePostition', {position: queue.length})
 
-      console.log(queue)
-    }
+    //   console.log(queue)
+    socket.to(100).broadcast.emit('user-connected', next)
     
     socket.on('disconnect', () => {
       console.log('disconnected')
