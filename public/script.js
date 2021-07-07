@@ -96,7 +96,7 @@ function beep() {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
   console.log('called call')
-  const video = document.createElement('video')
+  let video = document.createElement('video')
   video.setAttribute("playsinline",null)
   console.log('connected')
   beep();
