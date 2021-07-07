@@ -40,7 +40,6 @@ function countdown(){
       }
 }
 
-myPeer.on('open', function (id) {
   navigator.mediaDevices.getUserMedia({
     video: true,
     audio: false
@@ -63,7 +62,7 @@ myPeer.on('open', function (id) {
       vid=connectToNewUser(userId, stream)
     })
   })
-})
+
 
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
