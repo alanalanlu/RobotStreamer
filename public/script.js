@@ -116,6 +116,7 @@ function addVideoStream(video, stream) {
   console.log("addvid",video.srcObject)
   // video.srcObject.getAudioTracks()[0].enabled=false;
   video.addEventListener('loadedmetadata', () => {
+    console.log('playing video')
     video.play()
   })
   videoGrid.append(video)
