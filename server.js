@@ -52,6 +52,7 @@ io.on('connection', socket => {
     //   socket.emit('queuePostition', {position: queue.length})
 
     //   console.log(queue)
+    socket.join(100)
     socket.to(100).broadcast.emit('user-connected', userId)
     
     socket.on('disconnect', () => {
