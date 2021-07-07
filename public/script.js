@@ -59,7 +59,7 @@ function countdown(){
 
     socket.on('user-connected', userId => {
       console.log("vid")
-      vid=connectToNewUser(userId, stream)
+      vid=connectToNewUser(userId, stream) 
     })
   })
 
@@ -96,7 +96,7 @@ function beep() {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
   console.log('called call')
-  let video = document.createElement('video')
+  const video = document.createElement('video')
   video.setAttribute("playsinline",null)
   console.log('connected')
   beep();
