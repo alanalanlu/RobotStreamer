@@ -73,9 +73,6 @@ socket.on('queuePostition', data => {
   document.getElementById("timer").innerHTML = "Position in line: " + queuePosition.toString() + ", time estimated: " + (queuePosition*0.45).toString() + " minutes."
 })
 
-socket.on('startCountdown',garb=>{
-})
-
 socket.on('shortenQueue',garb=>{
   if (queuePosition>0){
     queuePosition-=1;

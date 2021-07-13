@@ -33,7 +33,7 @@ io.on('connection', socket => {
           setTimeout(function(){
             socket.to(100).broadcast.emit('user-disconnected', next)
             queueSystem()
-          }, 31000)}
+          }, 11000)}
     }
     roomId=100
     if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
@@ -45,7 +45,7 @@ io.on('connection', socket => {
           socket.leave(100)
           socket.to(roomId).broadcast.emit('user-disconnected', userId)
           queueSystem()
-        }, 31000)}
+        }, 11000)}
     }
     else{
       queue.push(userId); 
