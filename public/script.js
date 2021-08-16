@@ -4,10 +4,10 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   secure: true,
   host:  'peerstreamer.herokuapp.com',
-})
+}) 
 // alert("This website allows you to control a robot hand with your hands through your camera and would need to access camera. Is that ok?")
 const myVideo = document.createElement('video')
-myVideo.setAttribute("playsinline",null)
+// myVideo.setAttribute("playsinline",null)
 myVideo.muted = true
 const peers = {}
 var vid;
@@ -31,7 +31,6 @@ function countdown(){
         button.setAttribute("id","rejoin")
         button.setAttribute("onclick","refresh()")
         document.body.appendChild(button);
-        console.log(vid,'here');
 
         if (vid){
           console.log(vid,'remove');
@@ -58,7 +57,6 @@ function countdown(){
     })
 
     socket.on('user-connected', userId => {
-      console.log("vid")
       vid=connectToNewUser(userId, stream) 
     })
   })
@@ -92,7 +90,6 @@ function beep() {
 
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
-  console.log('called call')
   const video = document.createElement('video')
   video.setAttribute("playsinline",null)
   console.log('connected')
