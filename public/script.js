@@ -5,6 +5,7 @@ const myPeer = new Peer(undefined, {
   secure: true,
   host:  'peerstreamer.herokuapp.com',
 }) 
+
 // alert("This website allows you to control a robot hand with your hands through your camera and would need to access camera. Is that ok?")
 const myVideo = document.createElement('video')
 // myVideo.setAttribute("playsinline",null)

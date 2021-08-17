@@ -27,13 +27,15 @@ io.on('connection', socket => {
     function queueSystem(){
       if (queue.length>0){
           var next=queue[0]
-          socket.to(100).broadcast.emit('user-connected', next)
-          queue.shift()
-          io.emit('shortenQueue',{position: 10})
-          setTimeout(function(){
-            socket.to(100).broadcast.emit('user-disconnected', next)
-            queueSystem()
-          }, 11000)}
+          if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
+            socket.to(100).broadcast.emit('user-connected', next)
+            queue.shift()
+            io.emit('shortenQueue',{position: 10})
+            setTimeout(function(){
+              socket.to(100).broadcast.emit('user-disconnected', next)
+              queueSystem()
+            }, 11000)}
+           }
     }
     roomId=100
     if (!io.sockets.adapter.rooms[roomId] || io.sockets.adapter.rooms[roomId].length<2){
