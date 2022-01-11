@@ -11,7 +11,7 @@ const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
 var vid;
-var timer = 10;
+var timer = 60;
 var queuePosition;
 // countdown();
 function refresh(){
@@ -68,13 +68,13 @@ socket.on('user-disconnected', userId => {
 
 socket.on('queuePostition', data => {
   queuePosition=data.position
-  document.getElementById("timer").innerHTML = "Position in line: " + queuePosition.toString() + ", time estimated: " + (queuePosition*0.45).toString() + " minutes."
+  document.getElementById("timer").innerHTML = "Position in line: " + queuePosition.toString() + ", time estimated: " + (queuePosition*0.45).toString() + " minutes. Refreshing browser will lose the spot in queue" 
 })
 
 socket.on('shortenQueue',garb=>{
   if (queuePosition>0){
     queuePosition-=1;
-    document.getElementById("timer").innerHTML = "Position in line: " + queuePosition.toString() + ", time estimated: " + (queuePosition*0.45).toString() + " minutes."
+    document.getElementById("timer").innerHTML = "Position in line: " + queuePosition.toString() + ", time estimated: " + (queuePosition*0.45).toString() + " minutes. Refreshing browser will lose the spot in queue" 
   }
 })
 
