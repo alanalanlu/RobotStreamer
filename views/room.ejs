@@ -46,7 +46,7 @@
     }
     #title {
       /* padding-top: 10px; */
-      font-size: 40px;
+      font-size: 25px;
       font-family: 'Geneva';
       text-align: center;
       font-size: 50;
@@ -71,15 +71,36 @@
     #buymeacoffee{
       padding-left: 10px;
     }
-
+    .inner
+    {
+      display: inline-block;
+    }
+    #outer
+    {
+      width:100%;
+      text-align: center;
+    }
+    #buttonexp{
+      font-size: 10px;
+      font-family: 'Geneva';
+      /* text-align: center; */
+      font-size: 50;
+      width: 200px;
+      color: white;
+    }
+    
   </style>
 </head>
 <body>
   <p id="title">Control the Robot Hand with your hands!</p>
   <div id="video-grid"></div>
   <p id = "timer">Time Left</p>
-  <!-- <button type="button">Click Me!</button> -->
-  <script type="text/javascript" id="buymeacoffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="AlanLu" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  <!-- <div class="inner"> -->
+  <p id="buttonexp"> It costs alot to run this live so please consider donating</p>
+  <script class="inner" type="text/javascript" id="buymeacoffee" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="AlanLu" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a coffee " data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+  <button class="inner" id = "rejoin">Rejoin Queue</button>
+
+  <!-- </div> -->
   <!-- <iframe width="70%" id="live" height="534" src="https://www.youtube.com/embed/Qps2vPSx98o?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
   </div>
 </body>
